@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.AreaCodeLookup.example" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.AreaCodeLookup.example" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">AreaCodeLookup</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.AreaCodeLookup.example">
+      <s:element name="Status">
+        <s:complexType />
+      </s:element>
+      <s:element name="StatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StatusResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LookupAreaCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LookupAreaCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LookupAreaCodeResult" type="tns:AreaCodeEntry" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AreaCodeEntry">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Abbreviation" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="StatusSoapIn">
+    <wsdl:part name="parameters" element="tns:Status" />
+  </wsdl:message>
+  <wsdl:message name="StatusSoapOut">
+    <wsdl:part name="parameters" element="tns:StatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="LookupAreaCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:LookupAreaCode" />
+  </wsdl:message>
+  <wsdl:message name="LookupAreaCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:LookupAreaCodeResponse" />
+  </wsdl:message>
+  <wsdl:portType name="AreaCodeLookupSoap">
+    <wsdl:operation name="Status">
+      <wsdl:input message="tns:StatusSoapIn" />
+      <wsdl:output message="tns:StatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LookupAreaCode">
+      <wsdl:input message="tns:LookupAreaCodeSoapIn" />
+      <wsdl:output message="tns:LookupAreaCodeSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AreaCodeLookupSoap" type="tns:AreaCodeLookupSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Status">
+      <soap:operation soapAction="http://www.AreaCodeLookup.example/Status" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupAreaCode">
+      <soap:operation soapAction="http://www.AreaCodeLookup.example/LookupAreaCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AreaCodeLookupSoap12" type="tns:AreaCodeLookupSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Status">
+      <soap12:operation soapAction="http://www.AreaCodeLookup.example/Status" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupAreaCode">
+      <soap12:operation soapAction="http://www.AreaCodeLookup.example/LookupAreaCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AreaCodeLookup">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">AreaCodeLookup</wsdl:documentation>
+    <wsdl:port name="AreaCodeLookupSoap" binding="tns:AreaCodeLookupSoap">
+      <soap:address location="http://localhost/utils/AreaCodeLookup.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AreaCodeLookupSoap12" binding="tns:AreaCodeLookupSoap12">
+      <soap12:address location="http://localhost/utils/AreaCodeLookup.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
